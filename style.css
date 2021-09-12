@@ -1,0 +1,355 @@
+@font-face {
+	font-family: 'Roboto';
+	src: url('./assets/Roboto-Regular.ttf');
+	font-weight: 400;
+}
+@font-face {
+	font-family: 'Roboto';
+	src: url('./assets/Roboto-Bold.ttf');
+	font-weight: 700;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Roboto', sans-serif;
+}
+
+body {
+	overflow: hidden;
+}
+
+textarea {
+	resize: none;
+}
+
+button {
+	display: block;
+	cursor: pointer;
+	border: none;
+	font-family: 'Roboto', sans-serif;
+	transition: background-color 400ms;
+}
+button:disabled {
+	cursor: default;
+	background-color: #ccc !important;
+}
+
+#table {
+	display: block;
+	height: 100vh;
+	width: 50%;
+	overflow: auto;
+	border-spacing: 0;
+	text-align: center;
+}
+#table thead .title {
+	width: 1000px;
+	height: 3rem;
+	font-weight: bold;
+	border-bottom: 2px solid black;
+	border-right: 2px solid black;
+	padding: 0 4px;
+}
+#table thead .title:last-child {
+	padding-right: 7px;
+	border-right: none;
+}
+#table thead .title .sortBtn {
+	float: right;
+	background: url('./assets/arrow-down-solid.svg') no-repeat center/70%;
+	width: 20px;
+	height: 20px;
+	border: 1px solid #555;
+	border-radius: 7px;
+	transition: 300ms;
+}
+#table thead .title .sortBtn:hover {
+	background-color: #eee !important;
+}
+#table thead .title .sortBtn[descending='false'] {
+	transform: rotate(180deg);
+}
+#table thead .title .sortBtn[sorted='false'] {
+	background: url('./assets/sort-solid.svg') no-repeat center/50%;
+}
+#table tbody tr {
+	transition: background-color 200ms;
+}
+#table tbody tr:nth-child(even) {
+	background-color: #eee;
+}
+#table tbody tr:hover {
+	background-color: #ccc;
+}
+#table tbody tr:active {
+	background-color: #aaa;
+}
+#table tbody tr td {
+	padding: 2px 5px;
+}
+#table tbody tr .about {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+#pageInfo {
+	position: absolute;
+	bottom: 5%;
+	left: 25%;
+	transform: translateX(-50%);
+}
+#pageInfo * {
+	display: inline-block;
+	background-color: #fff !important;
+}
+#pageInfo p {
+	padding: 2px 6px;
+	border-radius: 6px;
+}
+#pageInfo button {
+	position: absolute;
+	width: 24px;
+	height: 24px;
+	border: 1px solid #555;
+	border-radius: 50%;
+	background: url('./assets/arrow-down-solid.svg') no-repeat center/50%;
+}
+#pageInfo button:hover:enabled {
+	background-color: #eee;
+}
+#pageInfo button:disabled {
+	visibility: hidden;
+}
+#pageInfo button#prevPage {
+	transform: translate(-100%, -10%) rotate(90deg);
+}
+#pageInfo button#nextPage {
+	transform: translateY(-10%) rotate(-90deg);
+}
+
+#edit {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100vh;
+	background-color: #eee;
+	border-left: 1px solid black;
+	overflow: auto;
+}
+#edit #info {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-52%);
+	width: 100%;
+	padding: 0 14px;
+}
+#edit #info .field {
+	margin: 20px 0;
+}
+#edit #info .field label {
+	display: inline-block;
+	min-width: 75px;
+	width: 15%;
+}
+#edit #info .field input,
+#edit #info .field textarea {
+	display: inline-block;
+	width: 70%;
+	margin-left: 15px;
+	padding: 4px 10px;
+	font-size: 1rem;
+}
+#edit #info button {
+	display: inline-block;
+	width: 30%;
+	margin: 50px 10%;
+	padding: 10px 20px;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+#edit #info button#saveBtn {
+	float: left;
+}
+#edit #info button#saveBtn:hover:enabled {
+	background-color: #ccc;
+}
+#edit #info button#deleteBtn {
+	float: right;
+	color: white;
+	background-color: #ff7777;
+	border: none;
+}
+#edit #info button#deleteBtn:hover {
+	background-color: #e06868;
+}
+#edit #info button#createBtn {
+	display: block;
+	width: 50%;
+	margin: 60px auto;
+	background-color: #77dd77;
+}
+#edit #info button#createBtn:hover:enabled {
+	background-color: #4b9749;
+}
+#edit #footer {
+	position: absolute;
+	bottom: 10px;
+	width: 100%;
+}
+#edit #footer button {
+	margin: auto;
+	transition: color 200ms;
+}
+#edit #footer button:hover {
+	color: #4b9749;
+}
+
+#newItemBtn,
+#hideBtn {
+	margin: 10px;
+	width: 32px;
+	height: 32px;
+	border: 2px solid #555;
+	border-radius: 5px;
+}
+#newItemBtn:hover:enabled,
+#hideBtn:hover:enabled {
+	background-color: #ddd !important;
+}
+
+#newItemBtn {
+	display: inline-block;
+	margin-left: 0;
+	background: #fff url('./assets/user-plus-solid.svg') no-repeat center/70%;
+}
+
+#hideMenu {
+	display: inline-block;
+	position: relative;
+}
+#hideMenu #hideBtn {
+	cursor: pointer;
+	background: #fff url('./assets/eye-regular.svg') no-repeat center/80%;
+}
+#hideMenu #hideWindow {
+	position: absolute;
+	visibility: visible;
+	top: 110%;
+	left: 10px;
+	width: 144px;
+	padding: 20px 10px 10px 10px;
+	border: 1px solid #888;
+	background-color: #fff;
+	opacity: 1;
+	transition: 300ms;
+	z-index: 10;
+}
+#hideMenu #hideWindow[collapsed='true'] {
+	top: 75%;
+	opacity: 0;
+	visibility: hidden;
+}
+#hideMenu #hideWindow::before,
+#hideMenu #hideWindow::after {
+	content: '';
+	position: absolute;
+	bottom: 100%;
+	left: 6px;
+	width: 0;
+	height: 0;
+	border: solid transparent;
+}
+#hideMenu #hideWindow::before {
+	margin-left: 1px;
+	border-width: 8px;
+	border-bottom-color: white;
+	z-index: 100;
+}
+#hideMenu #hideWindow::after {
+	border-width: 9px;
+	border-bottom-color: #888;
+}
+#hideMenu #hideWindow label {
+	display: inline-block;
+	margin: 0 0 10px 36px;
+}
+#hideMenu #hideWindow .visCheck {
+	width: 0;
+	position: relative;
+}
+#hideMenu #hideWindow .visCheck::before {
+	cursor: pointer;
+	content: '';
+	position: absolute;
+	width: 32px;
+	height: 17px;
+	background-color: #666;
+	border-radius: 9px;
+}
+#hideMenu #hideWindow .visCheck::after {
+	content: '';
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	top: 11%;
+	left: 1px;
+	border-radius: 7px;
+	background-color: #fff;
+	transition: 300ms ease-out 100ms;
+}
+#hideMenu #hideWindow .visCheck:checked::before {
+	background-color: #00d800;
+}
+#hideMenu #hideWindow .visCheck:checked::after {
+	left: 31px;
+	transform: translateX(-100%);
+}
+#hideMenu #hideWindow .visCheck:active::after {
+	width: 22px;
+	transition: 100ms;
+}
+
+@media screen and (max-width: 768px) {
+	#table {
+		height: 50vh;
+		width: 100%;
+	}
+
+	#pageInfo {
+		bottom: 52%;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+
+	#edit {
+		top: 50%;
+		left: 0;
+		width: 100%;
+		height: 50vh;
+		border-left: none;
+		border-top: 1px solid black;
+	}
+	#edit #info {
+		top: 100%;
+	}
+	#edit #footer {
+		top: 170%;
+	}
+}
+@media screen and (max-width: 345px) {
+	#edit #info {
+		top: 130%;
+	}
+	#edit #info .field input,
+	#edit #info .field textarea {
+		width: 90%;
+		margin: 2px 0 6px 0;
+	}
+}

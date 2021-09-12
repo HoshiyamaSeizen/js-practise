@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>Table</title>
+	</head>
+	<body>
+		<table id="table">
+			<thead>
+				<tr>
+					<th class="firstName title" style="min-width: 90px">
+						Имя
+						<button
+							column="firstName"
+							descending="true"
+							sorted="false"
+							class="sortBtn"
+						></button>
+					</th>
+					<th class="lastName title" style="min-width: 110px">
+						Фамилия
+						<button
+							column="lastName"
+							descending="true"
+							sorted="false"
+							class="sortBtn"
+						></button>
+					</th>
+					<th class="about title" style="min-width: 200px">
+						Описание
+						<button column="about" descending="true" sorted="false" class="sortBtn"></button>
+					</th>
+					<th class="eyeColor title" style="min-width: 110px">
+						Цвет глаз
+						<button
+							column="eyeColor"
+							descending="true"
+							sorted="false"
+							class="sortBtn"
+						></button>
+					</th>
+				</tr>
+			</thead>
+			<tbody id="tbody"></tbody>
+		</table>
+		<div id="pageInfo" hidden>
+			<button id="prevPage" onclick="changePage(page - 1)"></button>
+			<p>Page: <span id="currentPage">1</span></p>
+			<button id="nextPage" onclick="changePage(page + 1)"></button>
+		</div>
+		<div id="edit">
+			<div id="hideMenu">
+				<button id="hideBtn" onclick="showHideMenu()"></button>
+				<div id="hideWindow" collapsed="true">
+					<div>
+						<input
+							class="visCheck"
+							type="checkbox"
+							id="firstNameVisible"
+							checked
+							onclick="renderTable()"
+						/>
+						<label for="firstNameVisible">Имя</label>
+					</div>
+
+					<div>
+						<input
+							class="visCheck"
+							type="checkbox"
+							id="lastNameVisible"
+							checked
+							onclick="renderTable()"
+						/>
+						<label for="lastNameVisible">Фамилия</label>
+					</div>
+					<div>
+						<input
+							class="visCheck"
+							type="checkbox"
+							id="aboutVisible"
+							checked
+							onclick="renderTable()"
+						/>
+						<label for="aboutVisible">Описание</label>
+					</div>
+					<div>
+						<input
+							class="visCheck"
+							type="checkbox"
+							id="eyeColorVisible"
+							checked
+							onclick="renderTable()"
+						/>
+						<label for="eyeColorVisible">Цвет глаз</label>
+					</div>
+				</div>
+			</div>
+			<button id="newItemBtn" disabled onclick="openCreationWindow()"></button>
+			<div id="info">
+				<div class="field">
+					<label for="firstName">Имя</label>
+					<input id="firstName" type="text" oninput="lookForChanges()" />
+				</div>
+				<div class="field">
+					<label for="lastName">Фамилия</label>
+					<input id="lastName" type="text" oninput="lookForChanges()" />
+				</div>
+				<div class="field">
+					<label for="about">Описание</label>
+					<textarea id="about" cols="30" rows="4" oninput="lookForChanges()"></textarea>
+				</div>
+				<div class="field">
+					<label for="eyeColor">Цвет глаз</label>
+					<input id="eyeColor" type="text" oninput="lookForChanges()" />
+				</div>
+				<div class="field">
+					<label for="phone">Телефон</label>
+					<input id="phone" type="tel" oninput="lookForChanges()" />
+				</div>
+				<div id="changeButtons" hidden="true">
+					<button id="saveBtn" disabled="true" onclick="saveInfo()">Сохранить</button>
+					<button id="deleteBtn" onclick="deleteInfo()">Удалить</button>
+				</div>
+				<div id="createButtons">
+					<button id="createBtn" disabled="true" onclick="createInfo()">Создать</button>
+				</div>
+			</div>
+			<div id="footer">
+				<button view="0" id="changeView" onclick="changeTableView()">
+					Отображать на нескольких страницах
+				</button>
+			</div>
+		</div>
+		<script src="info.js"></script>
+		<script src="listeners.js"></script>
+		<script src="editPanel.js"></script>
+		<script src="main.js"></script>
+	</body>
+</html>
